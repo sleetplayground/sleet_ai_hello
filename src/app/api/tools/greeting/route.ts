@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { connect, Contract, keyStores } from 'near-api-js';
+import { signRequestFor } from '@bitte-ai/agent-sdk';
 
 interface GreetingResponse {
   message: string;
@@ -53,7 +54,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'message is required' }, { status: 400 });
     }
 
-    // For setting greeting, we'll return a transaction payload that needs to be signed
     const transactionPayload = {
       receiverId: 'hello.sleet.near',
       actions: [
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
           type: 'FunctionCall',
           params: {
             methodName: 'set_greeting',
-            args: { message },
+            args: JSON.stringify({ message }),
             gas: '30000000000000',
             deposit: '0'
           }
@@ -69,7 +69,12 @@ export async function POST(request: Request) {
       ]
     };
 
-    return NextResponse.json({ transactionPayload });
+    const signRequest = signRequestFor({
+      chainId: 'near',
+      transactions: [transactionPayload]
+    });
+
+    return NextResponse.json({ signRequest });
   } catch (error) {
     console.error('Error creating set_greeting transaction:', error);
     return NextResponse.json({ error: 'Failed to create set_greeting transaction' }, { status: 500 });
