@@ -1,8 +1,13 @@
 import { NextResponse } from 'next/server';
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js';
+import { connect, Contract, keyStores } from 'near-api-js';
 
 interface GreetingResponse {
   message: string;
+}
+
+interface GreetingContract extends Contract {
+  get_greeting(): Promise<GreetingResponse>;
+  set_greeting(args: { message: string }): Promise<void>;
 }
 
 const config = {
@@ -24,9 +29,9 @@ async function getGreeting(): Promise<GreetingResponse> {
   const contract = new Contract(account, 'hello.sleet.near', {
     viewMethods: ['get_greeting'],
     changeMethods: ['set_greeting']
-  });
+  }) as GreetingContract;
 
-  return (contract as any).get_greeting();
+  return contract.get_greeting();
 }
 
 export async function GET() {
