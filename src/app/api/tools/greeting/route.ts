@@ -28,7 +28,8 @@ async function getGreeting(): Promise<GreetingResponse> {
   const account = await near.account('dummy.near');
   const contract = new Contract(account, 'hello.sleet.near', {
     viewMethods: ['get_greeting'],
-    changeMethods: ['set_greeting']
+    changeMethods: ['set_greeting'],
+    useLocalViewExecution: true
   }) as GreetingContract;
 
   return contract.get_greeting();
