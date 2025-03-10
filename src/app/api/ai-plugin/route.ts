@@ -23,7 +23,18 @@ export async function GET() {
                 tools: [{ type: "generate-transaction" }, { type: "generate-evm-tx" }, { type: "sign-message" }]
             },
         },
-        paths: {
+
+
+        paths: { // opening 👋
+
+
+
+
+
+
+
+            // 👋
+            // src/app/api/tools/get-blockchains/route.ts
             "/api/tools/get-blockchains": {
                 get: {
                     summary: "get blockchain information",
@@ -49,6 +60,25 @@ export async function GET() {
                     },
                 },
             },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 👋
+            // src/app/api/tools/get-user/route.ts
             "/api/tools/get-user": {
                 get: {
                     summary: "get user information",
@@ -98,6 +128,25 @@ export async function GET() {
                     }
                 }
             },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 👋
+            // src/app/api/tools/twitter/route.ts
             "/api/tools/twitter": {
                 get: {
                     operationId: "getTwitterShareIntent",
@@ -193,6 +242,21 @@ export async function GET() {
                     }
                 }
             },
+
+
+
+
+
+
+    
+            
+
+
+
+
+
+            // 👋
+            // src/app/api/tools/create-near-transaction/route.ts
             "/api/tools/create-near-transaction": {
                 get: {
                     operationId: "createNearTransaction",
@@ -296,6 +360,26 @@ export async function GET() {
                     }
                 }
             },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 👋
+            // src/app/api/tools/create-evm-transaction/route.ts
             "/api/tools/create-evm-transaction": {
                 get: {
                     operationId: "createEvmTransaction",
@@ -390,6 +474,23 @@ export async function GET() {
                     }
                 }
             },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 👋
+            // src/app/api/tools/coinflip/route.ts
             "/api/tools/coinflip": {
                 get: {
                     summary: "Coin flip",
@@ -432,6 +533,25 @@ export async function GET() {
                     }
                 }
             },
+        
+
+
+           
+            
+
+
+
+
+
+
+
+
+
+
+
+
+    // 👋
+    // Closing     
         },
     };
 
