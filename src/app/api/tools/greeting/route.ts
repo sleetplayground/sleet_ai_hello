@@ -70,7 +70,7 @@ export async function POST(request: Request) {
     };
 
     const signRequest = signRequestFor({
-      chainId: 'near',
+      chainId: 329847900, // NEAR chain ID
       transactions: [transactionPayload]
     });
 
