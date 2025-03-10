@@ -490,6 +490,176 @@ export async function GET() {
 
 
             // 👋
+            // src/app/api/tools/greeting/route.ts
+            "/api/tools/greeting": {
+                get: {
+                    operationId: "getGreeting",
+                    summary: "Get greeting message",
+                    description: "Retrieves the current greeting message from the hello.sleet.near contract",
+                    responses: {
+                        "200": {
+                            description: "Successful response",
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            message: {
+                                                type: "string",
+                                                description: "The current greeting message"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            description: "Error response",
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            error: {
+                                                type: "string",
+                                                description: "Error message"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                post: {
+                    operationId: "setGreeting",
+                    summary: "Set greeting message",
+                    description: "Sets a new greeting message in the hello.sleet.near contract",
+                    requestBody: {
+                        required: true,
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        message: {
+                                            type: "string",
+                                            description: "The new greeting message to set"
+                                        }
+                                    },
+                                    required: ["message"]
+                                }
+                            }
+                        }
+                    },
+                    responses: {
+                        "200": {
+                            description: "Successful response",
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            transactionPayload: {
+                                                type: "object",
+                                                properties: {
+                                                    receiverId: {
+                                                        type: "string",
+                                                        description: "The contract account ID"
+                                                    },
+                                                    actions: {
+                                                        type: "array",
+                                                        items: {
+                                                            type: "object",
+                                                            properties: {
+                                                                type: {
+                                                                    type: "string",
+                                                                    description: "The type of action"
+                                                                },
+                                                                params: {
+                                                                    type: "object",
+                                                                    properties: {
+                                                                        methodName: {
+                                                                            type: "string",
+                                                                            description: "The contract method to call"
+                                                                        },
+                                                                        args: {
+                                                                            type: "object",
+                                                                            description: "The arguments for the contract call"
+                                                                        },
+                                                                        gas: {
+                                                                            type: "string",
+                                                                            description: "The gas limit for the transaction"
+                                                                        },
+                                                                        deposit: {
+                                                                            type: "string",
+                                                                            description: "The deposit amount for the transaction"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "400": {
+                            description: "Bad request",
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            error: {
+                                                type: "string",
+                                                description: "Error message"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            description: "Server error",
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            error: {
+                                                type: "string",
+                                                description: "Error message"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 👋
             // src/app/api/tools/coinflip/route.ts
             "/api/tools/coinflip": {
                 get: {
