@@ -6,7 +6,7 @@ export async function GET() {
         openapi: "3.0.0",
         info: {
             title: "Boilerplate",
-            description: "API for the boilerplate",
+            description: "API for the boilerplate + something by SLEET",
             version: "1.0.0",
         },
         servers: [
