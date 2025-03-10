@@ -55,23 +55,19 @@ export async function POST(request: Request) {
     }
 
     const transactionPayload = {
-      receiverId: 'hello.sleet.near',
-      actions: [
-        {
-          type: 'FunctionCall',
-          params: {
-            methodName: 'set_greeting',
-            args: JSON.stringify({ message }),
-            gas: '30000000000000',
-            deposit: '0'
-          }
-        }
-      ]
+      to: 'hello.sleet.near',
+      value: '0',
+      data: JSON.stringify({
+        methodName: 'set_greeting',
+        args: { message },
+        gas: '30000000000000',
+        deposit: '0'
+      })
     };
 
     const signRequest = signRequestFor({
       chainId: 329847900, // NEAR chain ID
-      transactions: [transactionPayload]
+      metaTransactions: [transactionPayload]
     });
 
     return NextResponse.json({ signRequest });
